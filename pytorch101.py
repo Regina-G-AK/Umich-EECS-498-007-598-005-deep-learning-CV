@@ -663,7 +663,15 @@ def mm_on_gpu(x: Tensor, w: Tensor) -> Tensor:
     #                      TODO: Implement this function                     #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    # Step 1: Move tensors to GPU
+    x_gpu = x.cuda()
+    w_gpu = w.cuda()
+    
+    # Step 2: Perform matrix multiplication on GPU
+    y_gpu = torch.matmul(x_gpu, w_gpu)
+    
+    # Step 3: Move the result back to CPU
+    y = y_gpu.cpu()
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
@@ -697,7 +705,17 @@ def challenge_mean_tensors(xs: List[Tensor], ls: Tensor) -> Tensor:
     # mean values as a tensor in `y`.                                        #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    # Step 1: Concatenate all tensors in `xs` into a single tensor
+    concatenated = torch.cat(xs)
+
+    # Step 2: Create an index tensor to segment the concatenated tensor
+    segment_ids = torch.repeat_interleave(torch.arange(len(xs), device=ls.device), ls)
+
+    # Step 3: Compute sums for each segment
+    sums = torch.zeros(len(xs), device=ls.device).scatter_add_(0, segment_ids, concatenated)
+
+    # Step 4: Compute the means using the lengths `ls`
+    y = sums / ls
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
@@ -737,7 +755,23 @@ def challenge_get_uniques(x: torch.Tensor) -> Tuple[Tensor, Tensor]:
     # O(N) memory.                                                           #
     ##########################################################################
     # Replace "pass" statement with your code
-    pass
+    # Step 1: Use sorting to identify unique values and their indices
+    # -----------------------------------------------------------------------
+    # Sort the tensor and keep track of the original indices
+    sorted_vals, sorted_indices = torch.sort(x)
+
+    # Create a mask to identify the unique values
+    is_unique = torch.cat((torch.tensor([True], device=x.device), sorted_vals[1:] != sorted_vals[:-1]))
+
+    # Extract the unique values and their first occurrence indices
+    uniques = sorted_vals[is_unique]
+    first_occurrence_indices = sorted_indices[is_unique]
+
+    # Step 2: Sort the indices of first occurrences to maintain order of appearance in x
+    # -----------------------------------------------------------------------
+    _, sorted_occurrence_order = torch.sort(first_occurrence_indices)
+    uniques = uniques[sorted_occurrence_order]
+    indices = first_occurrence_indices[sorted_occurrence_order]
     ##########################################################################
     #                            END OF YOUR CODE                            #
     ##########################################################################
