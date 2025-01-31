@@ -9,3 +9,6 @@
 **A2**
 - 实现`linear classifier`
 - 学习神经网络的基本架构，搭建一个2层的神经网络`2-layer neural network`
+
+**A3**
+- 实现`fully connected network`全连接网络：熟悉各类`update rules`: `SGD`、`SGD+Momentum`、`RMSProp`、`Adam`
