@@ -12,3 +12,4 @@
 
 **A3**
 - 实现`fully connected network`全连接网络：熟悉各类`update rules`: `SGD`、`SGD+Momentum`、`RMSProp`、`Adam`
+- 实现`convolutional network`卷积网络
