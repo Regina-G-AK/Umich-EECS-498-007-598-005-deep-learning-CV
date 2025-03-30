@@ -13,3 +13,14 @@
 **A3**
 - 实现`fully connected network`全连接网络：熟悉各类`update rules`: `SGD`、`SGD+Momentum`、`RMSProp`、`Adam`
 - 实现`convolutional network`卷积网络
+
+**A4**
+- 关于目标检测
+- 实现`one stage detector`
+- 实现`two stage detector`
+
+**A5**
+- 实现`RNN-LSTM`
+- 实现`Transformer`: *Attension is all you need.*
+
+To be continued.
