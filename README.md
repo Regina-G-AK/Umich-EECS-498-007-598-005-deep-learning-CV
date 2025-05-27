@@ -15,12 +15,19 @@
 - 实现`convolutional network`卷积网络
 
 **A4**
-- 关于目标检测
+-----------目标检测--------------
 - 实现`one stage detector`
 - 实现`two stage detector`
 
-**A5**
+**A5**    
+-----------时序模型--------------
 - 实现`RNN-LSTM`
 - 实现`Transformer`: *Attension is all you need.*
 
-To be continued.
+**A6**
+-----------经典生成模型------------
+- 实现`GAN`：了解`Encoder-Decoder`结构   
+- 实现`VAE`：变分自动编码器
+- 实际应用：`network_visualization`、`style_transfer`展现了生成模型的实际应用场景，进行网络模型的可视化、风格迁移……
+
+*The End.*
